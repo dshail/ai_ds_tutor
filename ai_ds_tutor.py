@@ -4,7 +4,6 @@ import google.generativeai as genai
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import sqlite3
 import requests
 import nbformat
 from nbconvert import PythonExporter
@@ -55,7 +54,7 @@ st.write("Ask me anything about Data Science!")
 
 # Sidebar Features
 st.sidebar.title("📂 Features")
-features = ["Live Python Code Execution", "Data Visualization", "SQL Query Assistance", "Real-time API Data", "AI Study Notes", "Jupyter Notebook Integration", "AI Code Debugging", "Custom Model Training"]
+features = ["Live Python Code Execution", "Data Visualization", "Real-time API Data", "AI Study Notes", "Jupyter Notebook Integration", "AI Code Debugging", "Custom Model Training"]
 selected_feature = st.sidebar.radio("Choose a Feature:", features)
 
 # Function: Execute Python Code
@@ -75,18 +74,6 @@ def debug_python_code(code):
         return "No errors detected. Code executed successfully."
     except Exception as e:
         return f"Error detected: {str(e)}. Suggested fix: {llm.predict(input=f'Debug the following code: {code}') }"
-
-# Function: Execute SQL Query
-def execute_sql_query(query):
-    try:
-        conn = sqlite3.connect(":memory:")
-        df = pd.read_csv("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv")
-        df.to_sql("airtravel", conn, index=False, if_exists="replace")
-        result = pd.read_sql_query(query, conn)
-        conn.close()
-        return result
-    except Exception as e:
-        return str(e)
 
 # Function: Train a Custom Model
 def train_custom_model(df):
@@ -122,12 +109,6 @@ elif selected_feature == "Data Visualization":
     fig, ax = plt.subplots()
     sns.barplot(x="Category", y="Values", data=df, ax=ax)
     st.pyplot(fig)
-
-elif selected_feature == "SQL Query Assistance":
-    query = st.text_area("Write SQL Query:")
-    if st.button("Run SQL Query"):
-        result = execute_sql_query(query)
-        st.dataframe(result)
 
 elif selected_feature == "Real-time API Data":
     if st.button("Fetch API Data"):
