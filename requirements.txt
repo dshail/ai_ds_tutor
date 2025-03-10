@@ -3,7 +3,6 @@ google-generativeai
 pandas
 matplotlib
 seaborn
-sqlite3
 requests
 nbformat
 nbconvert
