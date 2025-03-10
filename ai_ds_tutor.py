@@ -10,7 +10,7 @@ from nbconvert import PythonExporter
 from nbclient import NotebookClient
 from io import BytesIO
 from fpdf import FPDF
-from langchain_google.generativeai import ChatGoogleGenerativeAI
+from langchain_google import generativeai
 from langchain.memory import FAISSRetrieverMemory
 from langchain.vectorstores import FAISS
 from langchain.chains import ConversationChain
