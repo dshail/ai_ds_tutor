@@ -1,0 +1,14 @@
+streamlit
+openai
+langchain
+faiss-cpu
+google-generativeai
+pandas
+matplotlib
+seaborn
+sqlite3
+requests
+nbformat
+nbconvert
+nbclient
+fpdf
