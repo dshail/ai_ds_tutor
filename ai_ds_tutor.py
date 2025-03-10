@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import google.generativeai as genai
-import openai
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
