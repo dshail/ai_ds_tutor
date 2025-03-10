@@ -14,7 +14,6 @@ from fpdf import FPDF
 from langchain_google import GoogleGenerativeAI
 from langchain.memory import FAISSRetrieverMemory
 from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
 from langchain.chains import ConversationChain
 from langchain.prompts import PromptTemplate
 
@@ -23,11 +22,10 @@ api_key = st.secrets["GOOGLE_API_KEY"]
 genai.configure(api_key=api_key)
 
 # Setup FAISS Vector Memory
-embedding_model = OpenAIEmbeddings()
 if os.path.exists("faiss_memory"):
-    vectorstore = FAISS.load_local("faiss_memory", embeddings=embedding_model)
+    vectorstore = FAISS.load_local("faiss_memory")
 else:
-    vectorstore = FAISS.from_texts([""], embedding_model)
+    vectorstore = FAISS.from_texts([""], [])
 
 retriever = vectorstore.as_retriever()
 memory = FAISSRetrieverMemory(retriever=retriever)
