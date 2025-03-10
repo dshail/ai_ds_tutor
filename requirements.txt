@@ -1,5 +1,5 @@
 streamlit
-google-genai
+langchain
 pandas
 matplotlib
 seaborn
@@ -8,5 +8,3 @@ nbformat
 nbconvert
 nbclient
 fpdf
-langchain-google
-langchain
