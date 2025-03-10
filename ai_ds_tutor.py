@@ -11,7 +11,7 @@ from nbconvert import PythonExporter
 from nbclient import NotebookClient
 from io import BytesIO
 from fpdf import FPDF
-from langchain_google import GoogleGenerativeAI
+from langchain_google.generativeai import ChatGoogleGenerativeAI
 from langchain.memory import FAISSRetrieverMemory
 from langchain.vectorstores import FAISS
 from langchain.chains import ConversationChain
@@ -31,7 +31,7 @@ retriever = vectorstore.as_retriever()
 memory = FAISSRetrieverMemory(retriever=retriever)
 
 # Define AI Model
-llm = GoogleGenerativeAI(model="gemini-1.5-pro")
+llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
 
 # Custom Prompt for Data Science Filtering
 data_science_prompt = PromptTemplate(
