@@ -1,6 +1,5 @@
 import streamlit as st
 import os
-import google.generativeai as genai
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -10,7 +9,7 @@ from nbconvert import PythonExporter
 from nbclient import NotebookClient
 from io import BytesIO
 from fpdf import FPDF
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.llms import GoogleGenerativeAI  # Assuming this is available
 from langchain.memory import FAISSRetrieverMemory
 from langchain.vectorstores import FAISS
 from langchain.chains import ConversationChain
@@ -18,7 +17,6 @@ from langchain.prompts import PromptTemplate
 
 # Load API key securely from Streamlit secrets
 api_key = st.secrets["GOOGLE_API_KEY"]
-genai.configure(api_key=api_key)
 
 # Setup FAISS Vector Memory
 if os.path.exists("faiss_memory"):
@@ -30,7 +28,9 @@ retriever = vectorstore.as_retriever()
 memory = FAISSRetrieverMemory(retriever=retriever)
 
 # Define AI Model
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
+# Note: Adjust this based on the actual class and parameters needed
+# Assuming GoogleGenerativeAI is available and correctly configured
+llm = GoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=api_key)
 
 # Custom Prompt for Data Science Filtering
 data_science_prompt = PromptTemplate(
