@@ -11,7 +11,7 @@ from nbconvert import PythonExporter
 from nbclient import NotebookClient
 from io import BytesIO
 from fpdf import FPDF
-from langchain.chat_models import GoogleGenerativeAI
+from langchain_google import GoogleGenerativeAI
 from langchain.memory import FAISSRetrieverMemory
 from langchain.vectorstores import FAISS
 from langchain.embeddings import OpenAIEmbeddings
